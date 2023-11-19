@@ -1,6 +1,6 @@
 <!-- src/app/agent/agent.component.html -->
 
-<div class="card">
+<!-- <div class="card">
   <div class="card-header">
     <h5 class="card-title">Users List</h5>
   </div>
@@ -53,10 +53,10 @@
       <button *ngIf="selectedAgent.id" type="button" class="btn btn-danger" (click)="deleteAgent()">Delete Agent</button>
       <button type="button" class="btn btn-secondary" (click)="toggleForm()">Cancel</button>
     </form>
-  </div>
+  </div> -->
 <!-- </div> -->
 
-<button type="button" class="btn btn-success mt-3" (click)="toggleForm()">Add New Agent</button>
+<!-- <button type="button" class="btn btn-success mt-3" (click)="toggleForm()">Add New Agent</button> -->
 
 
 
@@ -80,3 +80,62 @@
     {{ agent.firstName }} {{ agent.lastName }}
   </li>
 </ul> -->
+<div class="card-body">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Agent Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Policy IDs</th>
+        <th>Modify</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let agent of agents">
+        <td>{{ agent.id }}</td>
+        <td>{{ agent.firstName }}</td>
+        <td>{{ agent.lastName }}</td>
+        <td>{{ agent.email }}</td>
+        <td>{{ agent.policyIds.join(', ') }}</td>
+        <td>
+          <button (click)="editAgent(agent)">Edit</button>
+          <button (click)="deleteAgent(agent.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button class="btn btn-success" (click)="toggleForm()" >Add New Agent Details</button>
+<div *ngIf="showForm" class="agent-form">
+  <h2>Agent Details</h2>
+  <form (ngSubmit)="saveAgent()">
+    <div>
+      <label for="id">ID:</label>
+      <input type="text" id="id" [(ngModel)]="agent.id" name="id" required>
+    </div>
+    <div>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" [(ngModel)]="agent.firstName" name="firstName" required>
+    </div>
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" [(ngModel)]="agent.lastName" name="lastName" required>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="agent.email" name="email" required>
+    </div>
+    <div>
+      <label for="policyIds">Policy IDs (comma-separated):</label>
+      <input type="text" id="policyIds" [(ngModel)]="policyIdsString" name="policyIds">
+    </div>
+    <button type="submit" >Save Agent</button>
+  </form>
+</div>
+
+
+
+

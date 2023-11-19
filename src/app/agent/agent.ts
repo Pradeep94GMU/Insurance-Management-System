@@ -1,7 +1,7 @@
 export interface Agent {
-    id?: string;
+    id: string;
     firstName: string;
     lastName: string;
     email: string;
-    policyIds: string | string[];
+    policyIds: string[]; 
 }
