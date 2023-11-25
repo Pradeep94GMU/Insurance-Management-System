@@ -1,0 +1,233 @@
+<!-- 
+<form (ngSubmit)="onSearch()">
+    <input type="text" [(ngModel)]="searchParams.firstName" name="firstName" placeholder="First Name">
+    <input type="text" [(ngModel)]="searchParams.lastName" name="lastName" placeholder="Last Name">
+    <input type="email" [(ngModel)]="searchParams.email" name="email" placeholder="Email">
+    <button type="submit">Search</button>
+  </form>
+
+
+<div *ngIf="searchResults && searchResults.length > 0">
+    <h2>Search Results</h2>
+    <ul>
+      <li *ngFor="let customer of searchResults">
+        {{ customer.firstName }} {{ customer.lastName }} - {{ customer.email }}
+      </li>
+    </ul>
+  </div>
+
+
+
+
+<form (submit)="oNSearch()">
+    <label for="threshold">Claim Amount Threshold:</label>
+    <input type="number" id="threshold" [(ngModel)]="claimAmountThreshold" name="threshold">
+    <button type="submit">Search</button>
+  </form>
+  
+  <ul *ngIf="highValueClaims.length > 0">
+    <li *ngFor="let claim of highValueClaims">
+      {{ claim.customerFirstName }} {{ claim.customerLastName }} - {{ claim.claimAmount }}
+    </li>
+  </ul>
+  
+  
+
+ -->
+
+
+
+ <!-- Assuming your Angular component is set up correctly with the necessary variables and methods -->
+<!-- 
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="general-search-tab" data-toggle="tab" href="#general-search" role="tab" aria-controls="general-search" aria-selected="true">General Search</a>
+      <a class="nav-item nav-link" id="high-value-search-tab" data-toggle="tab" href="#high-value-search" role="tab" aria-controls="high-value-search" aria-selected="false">High Value Claims Search</a>
+      
+    </div>
+</nav>
+  
+  <div class="tab-content" id="nav-tabContent">
+
+    <div class="tab-pane fade show active" id="general-search" role="tabpanel" aria-labelledby="general-search-tab">
+      <form (ngSubmit)="onSearch()" class="my-4">
+        <input type="text" [(ngModel)]="searchParams.firstName" name="firstName" placeholder="First Name" class="form-control my-2">
+        <input type="text" [(ngModel)]="searchParams.lastName" name="lastName" placeholder="Last Name" class="form-control my-2">
+        <input type="email" [(ngModel)]="searchParams.email" name="email" placeholder="Email" class="form-control my-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+  
+      <div *ngIf="searchResults && searchResults.length > 0">
+        <h2>Search Results</h2>
+        <ul class="list-group">
+          <li *ngFor="let customer of searchResults" class="list-group-item">
+            {{ customer.firstName }} {{ customer.lastName }} - {{ customer.email }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+
+    <div class="tab-pane fade" id="high-value-search" role="tabpanel" aria-labelledby="high-value-search-tab">
+      <form (submit)="oNSearch()" class="my-4">
+        <div class="form-group">
+          <label for="threshold">Claim Amount Threshold:</label>
+          <input type="number" id="threshold" [(ngModel)]="claimAmountThreshold" name="threshold" class="form-control my-2">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+      
+      <ul *ngIf="highValueClaims.length > 0" class="list-group">
+        <li *ngFor="let claim of highValueClaims" class="list-group-item">
+          {{ claim.customerFirstName }} {{ claim.customerLastName }} - {{ claim.claimAmount }}
+        </li>
+      </ul>
+    </div>
+  </div>
+ -->
+
+<!-- Simple Search Form -->
+<div class="card-header">
+<label>
+    Query1: Simple Search
+</label>
+<div class="card">
+  <form (ngSubmit)="onSearch()">
+    <input type="text" [(ngModel)]="searchParams.firstName" name="firstName" placeholder="First Name">
+    <input type="text" [(ngModel)]="searchParams.lastName" name="lastName" placeholder="Last Name">
+    <input type="email" [(ngModel)]="searchParams.email" name="email" placeholder="Email">
+    <button type="submit" class="btn btn-primary">Search Simple</button> <!-- Add Bootstrap class -->
+  </form>
+  
+  <div *ngIf="searchResults && searchResults.length > 0">
+    <h2>Search Results</h2>
+    <ul>
+      <li *ngFor="let customer of searchResults">
+        {{ customer.firstName }} {{ customer.lastName }} - {{ customer.email }}
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- Claim Amount Search Form -->
+<label>
+    Query1: High Value Claims
+</label>
+<div class="card">
+  <form (submit)="oNSearch()" class="formm">
+    <label for="threshold">Claim Amount Threshold:</label>
+    <input type="number" id="threshold" [(ngModel)]="claimAmountThreshold" name="threshold">
+    <button type="submit" class="btn btn-primary">Search Claim Amount</button> <!-- Add Bootstrap class -->
+  </form>
+  
+  <ul *ngIf="highValueClaims.length > 0">
+    <li *ngFor="let claim of highValueClaims">
+      {{ claim.customerFirstName }} {{ claim.customerLastName }} - {{ claim.claimAmount }}
+    </li>
+  </ul>
+
+</div>
+  
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- high-payment Search Form -->
+<label>
+  Query3: Late Payment
+</label>
+<div class="card">
+<form (submit)="onSearchLatePayments()" class="formm">
+  <label for="policyType">Policy Type:</label>
+  <input type="text" id="policyType" [(ngModel)]="lateSearchParams.policyType" name="policyType" class="form-control" placeholder="Policy Type">
+  <label for="latePayment">Late Payment:</label>
+        <select id="latePayment" [(ngModel)]="lateSearchParams.latePayment" name="latePayment" class="form-control">
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select> 
+  <button type="submit" class="btn btn-primary">Search Late payment</button> <!-- Add Bootstrap class -->
+</form>
+<h3>Late Payment Results</h3>
+<ul *ngIf="latePaymentResults.length > 0">
+  <li *ngFor="let latePayment of latePaymentResults">
+    {{ latePayment.customerFirstName }} {{ latePayment.customerLastName }} - {{ latePayment.claimAmount }}
+  </li>
+</ul>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- high-payment Search Form -->
+<label>
+  Query4: Agent policy by gender
+</label>
+  <div class="card">
+    <h1>Agents</h1>
+    <label for="gender">Gender:</label>
+    <select id="gender" [(ngModel)]="gender">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <label for="isActive">Active:</label>
+    <input type="checkbox" id="isActive" [(ngModel)]="isActive">
+    <button (click)="getAgentsByGenderAndActiveStatus()">Filter</button>
+    <ul>
+      <li *ngFor="let agent of agents">
+        {{ agent.agentFirstName }} {{ agent.agentLastName }} ({{ agent.agentEmail }}) -
+        {{ agent.policyNumber }} ({{ agent.policyType }})
+      </li>
+    </ul>
+  </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- high-payment Search Form -->
+<label>
+  Query5: Late Payment
+</label>
+<div class="card">
+<form (submit)="onSearchLatePayments()" class="formm">
+  <label for="policyType">Policy Type:</label>
+  <input type="text" id="policyType" [(ngModel)]="lateSearchParams.policyType" name="policyType" class="form-control" placeholder="Policy Type">
+  <label for="latePayment">Late Payment:</label>
+        <select id="latePayment" [(ngModel)]="lateSearchParams.latePayment" name="latePayment" class="form-control">
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select> 
+  <button type="submit" class="btn btn-primary">Search Late payment</button> <!-- Add Bootstrap class -->
+</form>
+<h3>Late Payment Results</h3>
+<ul *ngIf="latePaymentResults.length > 0">
+  <li *ngFor="let latePayment of latePaymentResults">
+    {{ latePayment.customerFirstName }} {{ latePayment.customerLastName }} - {{ latePayment.claimAmount }}
+  </li>
+</ul>
+
+</div>
+

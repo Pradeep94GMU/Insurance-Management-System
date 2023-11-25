@@ -1,135 +1,103 @@
-import { Component, OnInit } from '@angular/core';
-import { Agent } from './agent';
-import { AgentService } from '../agent.service';
+// agent.component.ts
 
+import { Component, OnInit } from '@angular/core';
+import { AgentService } from '../agent.service';
+import { Agent } from './agent';
 
 @Component({
   selector: 'app-agent',
   templateUrl: './agent.component.html',
-  styleUrls: ['./agent.component.css']
+  styleUrls: ['./agent.component.css'],
 })
-
 export class AgentComponent implements OnInit {
-  showForm: boolean = false;
-  agent: Agent = { id: '', firstName: '', lastName: '', email: '', policyIds: [] };
-  policyIdsString: string = ''; // For handling the comma-separated string from the UI
-  agents: Agent[] = []; 
+  agents: Agent[] = [];
+  newAgent: Agent = {
+    id: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    policyIds: [],
+  };
+  selectedAgent: Agent | null = null;
+  showCreate: boolean = false;
+  policyIdsString: string = '';
 
-  constructor(private agentService: AgentService) { }
+  constructor(private agentService: AgentService) {}
 
   ngOnInit(): void {
-    this.getAgents();
+    this.loadAgents();
   }
 
-  getAgents(): void {
-    this.agentService.getAgents().subscribe(agents => {
-      this.agents = agents;
+  loadAgents(): void {
+    this.agentService.getAllAgents().subscribe((data) => {
+      this.agents = data;
     });
   }
 
-  saveAgent(): void {
-    this.agent.policyIds = this.policyIdsString.split(',').map(id => id.trim());
-    this.agentService.createAgent(this.agent).subscribe(result => {
-      console.log(result);
-      this.getAgents(); // Refresh the list of agents
-      this.agent = { id: '', firstName: '', lastName: '', email: '', policyIds: [] }; // Reset the form
-      this.policyIdsString = ''; // Reset the policyIds input
-    }, error => {
-      console.error(error);
-    });
+  selectAgent(agent: Agent): void {
+    this.selectedAgent = agent;
   }
 
-  editAgent(agent: Agent): void {
-    this.agent = {...agent}; // Copy the agent data to the form
-    this.policyIdsString = agent.policyIds.join(', '); // Convert policyIds array to string
+  showCreateForm(): void {
+    this.showCreate = true;
   }
 
-  deleteAgent(agentId: string): void {
-    this.agentService.deleteAgent(agentId).subscribe(() => {
-      this.getAgents(); // Refresh the list after deletion
-    }, error => {
-      console.error(error);
-    });
+  createAgent(): void {
+    // Implement agent creation logic using this.newAgent and this.policyIdsString
+    // ...
+
+    // Reset values and update agent list
+    this.newAgent = {
+      id: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      policyIds: [],
+    };
+    this.policyIdsString = '';
+    this.loadAgents();
+
+    // Hide the create form
+    this.showCreate = false;
   }
 
-  toggleForm(): void {
-    this.showForm = !this.showForm;
+  cancelCreate(): void {
+    // Reset values and hide the create form
+    this.newAgent = {
+      id: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      policyIds: [],
+    };
+    this.policyIdsString = '';
+    this.showCreate = false;
   }
 
+  cancelUpdate(): void {
+    // Reset selected agent
+    this.selectedAgent = null;
+  }
 
+  updateAgent(): void {
+    if (this.selectedAgent) {
+      // Implement agent update logic using this.selectedAgent
+      // ...
 
+      // Reset selected agent and update agent list
+      this.selectedAgent = null;
+      this.loadAgents();
+    }
+  }
 
+  deleteAgent(): void {
+    if (this.selectedAgent) {
+      // Implement agent deletion logic using this.selectedAgent.id
+      // ...
 
+      // Reset selected agent and update agent list
+      this.selectedAgent = null;
+      this.loadAgents();
+    }
+  }
 }
-
-
-
-
-
-  // showForm: boolean = false;
-  // agents: Agent[] = [];
-
-  // selectedAgent: Agent = this.getEmptyAgent();
-  
-  // constructor(private agentService: AgentService) {}
-
-  // ngOnInit(): void {
-  //   this.loadAgents();
-  // }
-
-  // getEmptyAgent(): Agent {
-  //   return {
-  //     id:'',
-  //     firstName: '',
-  //     lastName: '',
-  //     email: '',
-  //     policyIds: ''
-  //   };
-  // }
-
-  // loadAgents(): void {
-  //   this.agentService.getAgents().subscribe(agents => this.agents = agents);
-  // }
-
-  // selectAgent(agent: Agent): void {
-  //   this.selectedAgent = { ...agent };
-  //   this.showForm = true;
-  // }
-
-  // saveAgent(): void {
-  //   // Before splitting, check if policyIds is a string
-  //   const policyIds = typeof this.selectedAgent.policyIds === 'string'
-  //     ? this.selectedAgent.policyIds.split(',').map((s: string) => s.trim())
-  //     : this.selectedAgent.policyIds;
-  
-  //   const agentToSend: Agent = {
-  //     ...this.selectedAgent,
-  //     policyIds // policyIds is now guaranteed to be a string[] here
-  //   };
-  
-  //   if (agentToSend.id) {
-  //     this.agentService.updateAgent(agentToSend.id, agentToSend).subscribe(() => this.afterSave());
-  //   } else {
-  //     delete agentToSend.id; // Remove id property for new agents
-  //     this.agentService.createAgent(agentToSend).subscribe(() => this.afterSave());
-  //   }
-  // }
-
-  // deleteAgent(): void {
-  //   if (this.selectedAgent.id) {
-  //     this.agentService.deleteAgent(this.selectedAgent.id).subscribe(() => this.afterSave());
-  //   }
-  // }
-
-  // afterSave(): void {
-  //   this.loadAgents();
-  //   this.showForm = false;
-  //   this.selectedAgent = this.getEmptyAgent();
-  // }
-
-  // toggleForm(): void {
-  //   this.showForm = !this.showForm;
-  //   if (!this.showForm) {
-  //     this.selectedAgent = this.getEmptyAgent();
-  //   }
-  // }

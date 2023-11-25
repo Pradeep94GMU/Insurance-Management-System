@@ -1,0 +1,31 @@
+/* In your component.css */
+/* Example of custom styling, adjust as needed */
+.tab-content {
+    /* background: url('path-to-your-background-image.jpg') no-repeat center center; */
+    background-size: cover;
+    padding: 2rem;
+  }
+  
+  input[type="text"], input[type="email"], input[type="number"] {
+    border:#f00;
+    border-radius: 20px;
+    margin-right: 2rem;
+    border-color: #f00;
+  }
+  
+  button {
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(85, 64, 64); /* Bootstrap primary color for example */
+    color: #fff;
+    border-radius: 1px 0px solid;
+    border-color: #f00;
+  }
+
+  .formm #threshold{
+    border-radius: 1px solid red;
+    border-color: #f00;
+  }
+
+
+  

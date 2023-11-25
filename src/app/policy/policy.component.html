@@ -1,1 +1,201 @@
-<p>policy works!</p>
+
+<!-- policy.component.html -->
+
+<!--<div>
+    <h2>Policies</h2>
+    <ul>
+      <li *ngFor="let policy of policies" (click)="selectPolicy(policy)">
+        {{ policy.policyNumber }} edit {{ policy.policyType }}
+      </li>
+    </ul>
+  
+    <div *ngIf="selectedPolicy">
+      <h3>Edit Policy</h3>
+      <form>
+        <label for="customerId">Policy ID:</label>
+        <input type="text" id="Policy" name="Policy" [(ngModel)]="selectedPolicy.customerId" />
+  
+        <label for="customerId">Customer ID:</label>
+        <input type="text" id="customerId" name="customerId" [(ngModel)]="selectedPolicy.customerId" />
+  
+        <label for="agentId">Agent ID:</label>
+        <input type="text" id="agentId" name="agentId" [(ngModel)]="selectedPolicy.agentId" />
+  
+        <label for="policyNumber">Policy Number:</label>
+        <input type="text" id="policyNumber" name="policyNumber" [(ngModel)]="selectedPolicy.policyNumber" />
+
+        <label for="policyNumber">Policy Amount:</label>
+        <input type="text" id="policyAmount" name="policyAmount" [(ngModel)]="selectedPolicy.policyAmount" />
+  
+        <label for="policyType">Policy Type:</label>
+        <input type="text" id="policyType" name="policyType" [(ngModel)]="selectedPolicy.policyType" />
+  
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" [(ngModel)]="selectedPolicy.startDate" />
+  
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" [(ngModel)]="selectedPolicy.endDate" />
+  
+        <label for="isActive">Active:</label>
+        <input type="checkbox" id="isActive" name="isActive" [(ngModel)]="selectedPolicy.isActive" />
+  
+        <button type="button" (click)="updatePolicy()">Update</button>
+        <button type="button" (click)="deletePolicy()">Delete</button>
+      </form>
+    </div>
+  
+    <div>
+      <h3>Add New Policy</h3>
+      <form>
+        <label for="customerId">Policy ID:</label>
+        <input type="text" id="policyId" name="policyId" [(ngModel)]="newPolicy.id" />
+  
+        <label for="newCustomerId">Customer ID:</label>
+        <input type="text" id="newCustomerId" name="newCustomerId" [(ngModel)]="newPolicy.customerId" />
+  
+        <label for="newAgentId">Agent ID:</label>
+        <input type="text" id="newAgentId" name="newAgentId" [(ngModel)]="newPolicy.agentId" />
+  
+        <label for="newPolicyNumber">Policy Number:</label>
+        <input type="text" id="newPolicyNumber" name="newPolicyNumber" [(ngModel)]="newPolicy.policyNumber" />
+
+        <label for="policyNumber">Policy Amount:</label>
+        <input type="text" id="policyAmount" name="policyAmount" [(ngModel)]="newPolicy.policyAmount" />
+  
+        <label for="newPolicyType">Policy Type:</label>
+        <input type="text" id="newPolicyType" name="newPolicyType" [(ngModel)]="newPolicy.policyType" />
+  
+        <label for="newStartDate">Start Date:</label>
+        <input type="date" id="newStartDate" name="newStartDate" [(ngModel)]="newPolicy.startDate" />
+  
+        <label for="newEndDate">End Date:</label>
+        <input type="date" id="newEndDate" name="newEndDate" [(ngModel)]="newPolicy.endDate" />
+  
+        <label for="newIsActive">Active:</label>
+        <input type="checkbox" id="newIsActive" name="newIsActive" [(ngModel)]="newPolicy.isActive" />
+  
+        <button type="button" (click)="createPolicy()">Create</button>
+      </form>
+    </div>
+  </div>
+-->
+<!-- policy.component.html -->
+
+<div class="container">
+
+  <div class="card">
+      <div class="card-header">
+          <h2>Policies</h2>
+      </div>
+
+      <div class="card-body">
+  
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Policy ID</th>
+        <th scope="col">Customer ID</th>
+        <th scope="col">Agent ID</th>
+        <th scope="col">Policy Number</th>
+        <th scope="col">Policy Amount</th>
+        <th scope="col">Policy Type</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Active</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let policy of policies" (click)="selectPolicy(policy)">
+        <td>{{ policy.id }}</td>
+        <td>{{ policy.customerId }}</td>
+        <td>{{ policy.agentId }}</td>
+        <td>{{ policy.policyNumber }}</td>
+        <td>{{ policy.policyAmount }}</td>
+        <td>{{ policy.policyType }}</td>
+        <td>{{ policy.startDate | date: 'short' }}</td>
+        <td>{{ policy.endDate | date: 'short' }}</td>
+        <td>{{ policy.isActive ? 'Yes' : 'No' }}</td>
+        <td>
+          <button type="button" class="btn-custom-blue" (click)="selectPolicy(policy)">Edit</button>
+          <button type="button" class="btn-custom-blue" (click)="deletePolicy()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div *ngIf="selectedPolicy">
+    <h3>Edit Policy</h3>
+    <form>
+      <label for="customerId">Policy ID:</label>
+      <input type="text" id="Policy" name="Policy" [(ngModel)]="selectedPolicy.customerId" /><br><br>
+
+      <label for="customerId">Customer ID:</label>
+      <input type="text" id="customerId" name="customerId" [(ngModel)]="selectedPolicy.customerId" /><br><br>
+
+      <label for="agentId">Agent ID:</label>
+      <input type="text" id="agentId" name="agentId" [(ngModel)]="selectedPolicy.agentId" /><br><br>
+
+      <label for="policyNumber">Policy Number:</label>
+      <input type="text" id="policyNumber" name="policyNumber" [(ngModel)]="selectedPolicy.policyNumber" /><br><br>
+
+      <label for="policyAmount">Policy Amount:</label>
+      <input type="text" id="policyAmount" name="policyAmount" [(ngModel)]="selectedPolicy.policyAmount" /><br><br>
+
+      <label for="policyType">Policy Type:</label>
+      <input type="text" id="policyType" name="policyType" [(ngModel)]="selectedPolicy.policyType" /><br><br>
+
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" name="startDate" [(ngModel)]="selectedPolicy.startDate" /><br><br>
+
+      <label for="endDate">End Date:</label>
+      <input type="date" id="endDate" name="endDate" [(ngModel)]="selectedPolicy.endDate" /><br><br>
+
+      <label for="isActive">Active:</label>
+      <input type="checkbox" id="isActive" name="isActive" [(ngModel)]="selectedPolicy.isActive" /><br><br>
+
+      <button type="button" class="btn btn-custom-blue" (click)="updatePolicy()">Update</button>
+      <button type="button" class="btn btn-custom-blue" (click)="deletePolicy()">Delete</button>
+    </form>
+  </div>
+
+  
+    <div *ngIf="!selectedPolicy">
+      <div class="card-header">
+     
+      <button type="button" class="btn btn-success" (click)="showCreateForm()">Create</button>
+      </div>
+      <div *ngIf="showCreate">
+    <form>
+      <label for="policyId">Policy ID:</label>
+      <input type="text" id="policyId" name="policyId" [(ngModel)]="newPolicy.id" /><br><br>
+
+      <label for="newCustomerId">Customer ID:</label>
+      <input type="text" id="newCustomerId" name="newCustomerId" [(ngModel)]="newPolicy.customerId" /><br><br>
+
+      <label for="newAgentId">Agent ID:</label>
+      <input type="text" id="newAgentId" name="newAgentId" [(ngModel)]="newPolicy.agentId" /><br><br>
+
+      <label for="newPolicyNumber">Policy Number:</label>
+      <input type="text" id="newPolicyNumber" name="newPolicyNumber" [(ngModel)]="newPolicy.policyNumber" /><br><br>
+
+      <label for="policyAmount">Policy Amount:</label>
+      <input type="text" id="policyAmount" name="policyAmount" [(ngModel)]="newPolicy.policyAmount" /><br><br>
+
+      <label for="newPolicyType">Policy Type:</label>
+      <input type="text" id="newPolicyType" name="newPolicyType" [(ngModel)]="newPolicy.policyType" /><br><br>
+
+      <label for="newStartDate">Start Date:</label>
+      <input type="date" id="newStartDate" name="newStartDate" [(ngModel)]="newPolicy.startDate" /><br><br>
+
+      <label for="newEndDate">End Date:</label>
+      <input type="date" id="newEndDate" name="newEndDate" [(ngModel)]="newPolicy.endDate" /><br><br>
+
+      <label for="newIsActive">Active:</label>
+      <input type="checkbox" id="newIsActive" name="newIsActive" [(ngModel)]="newPolicy.isActive" /><br><br>
+
+      <button type="button" class="btn btn btn-custom-blue" (click)="createPolicy()">Create</button>
+      <button type="button" class="btn btn-custom-blue" (click)="cancelCreate()">Cancel</button>
+    </form>
+  </div>
+</div>

@@ -33,4 +33,8 @@ export class PolicyService {
   deletePolicy(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+
+  getDistinctPolicyTypes(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/distinct-types"`);
+  }
 }

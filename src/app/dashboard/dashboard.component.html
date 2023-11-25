@@ -1,5 +1,151 @@
-<!-- Dashboard Metrics -->
-<body>
+​​<!-- Greeting Message -->
 
-<p> Good Morning people</p>
-    </body>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+<!-- Dashboard Metrics -->
+
+<div class="main">
+    <div class="cardBox">
+        <div class="cardd">
+            <div>
+              <div class="numbers">{{ totalUsers }}</div>
+              <div class="cardName">Total Users</div>
+            </div>
+            <div class="iconBx">
+                <i class="fa-regular fa-user"></i>
+            </div>
+        </div>
+        <div class="cardd">
+            <div>
+              <div class="numbers">{{ totalPolices }}</div>
+              <div class="cardName">Total Policies</div>
+            </div>
+            <div class="iconBx">
+                <i class="fa-solid fa-file-lines"></i>
+            </div>
+        </div>
+        <div class="cardd">
+            <div>
+              <div class="numbers">{{ totalAgents }}</div>
+              <div class="cardName">Total Agents</div>
+            </div>
+            <div class="iconBx">
+                <i class="fa-solid fa-person"></i>
+            </div>
+        </div>
+        <div class="cardd">
+            <div>
+              <div class="numbers">{{ totalClaims }}</div>
+              <div class="cardName">Total Claims</div>
+            </div>
+            <div class="iconBx">
+                <i class="fa-solid fa-dollar-sign"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Chartsss -->
+    <div class="graphBox1">
+        <div class="box">
+            <div>
+              <label class="chartLable">Total Claim Status</label>
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+        <div class="box">
+            <div>
+              <label class="chartLable">Tracker of Monthly Premium</label>
+              <canvas id="monthlyPaymentsCanvas"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="graphBox2">
+        <div class="box">
+          <div>
+            <label class="chartLable">Number of People(Gender-wise)</label>
+            <canvas id="genderChart"></canvas>
+          </div>
+            
+        </div>
+        <div class="box">
+          <div>
+            <canvas id="donutChart"></canvas>
+          </div>
+          
+        </div>
+       
+    </div>
+
+     <!-- Order detail list -->
+     <div class="details">
+        <div class="recentOrders">
+          <div class="cardHeader">
+            <h2>Recent transactions</h2>
+            <a href="#" class="btn">View All </a>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Policy </th>
+                <th>Customer</th>
+                <th> Valid upto </th>
+                <th> Active</th>
+                <!-- <th>Payment Date</th> -->
+                <th>Amount Paid</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let result of searchResults">
+                <td>{{ result.policyNumber }} {{ result.policyType }}</td>
+                <td>{{ result.customerFirstName }} {{ result.customerLastName }}</td>
+                <td>{{ result.policyEndDate | date }}</td>
+                <td>{{ result.policyActive ? 'Yes' : 'No' }}</td>
+                <!-- <td>{{ result.paymentDate }}</td> -->
+                <td><span class="status delivered">{{ "$"+result.amountPaid }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Other cards... New Entry of a person -->
+<div class="recentCustomers">
+    <div class="cardHeader">
+      <h2>Recent Customer</h2>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <!-- <th>&nbsp;</th> -->
+          <th> </th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customer of customerName; let i = index">
+          <!-- <td>{{ i + 1 }}</td> -->
+          <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+        
+        </tr>
+      </tbody>
+    </table>
+  </div>
+    </div>
+      
+      
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>

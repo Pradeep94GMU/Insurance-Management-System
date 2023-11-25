@@ -1,0 +1,325 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+:root {
+    --blue: #287bff;
+    --white: #fff;
+    --grey: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+}
+
+.main {
+    position: relative;
+    width: calc(100% - 10px);
+    left: 5px;
+    min-height: 98vh;
+    background: #f5f5f5;
+    transition: 0.5s;
+}
+
+
+.cardBox {
+    position: relative;
+    width: 100%;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+}
+
+.cardBox .cardd {
+    position: relative;
+    background: aliceblue;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.cardBox .cardd .numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: #287bff;
+}
+
+
+.cardBox .cardd .cardName {
+    color: var(--black1);
+    margin-top: 22px;
+    margin-left: 0;
+    font-size: 15px;
+}
+
+.cardBox .cardd .iconBx {
+    font-size: 3.5em;
+    color: #999
+}
+
+.cardBox .cardd:hover {
+    background: #414346;
+}
+
+.cardBox .cardd:hover .numbers,
+.cardBox .cardd:hover .cardName,
+.cardBox .cardd:hover .iconBx {
+    color: white;
+}
+
+
+/* CHARTS */
+.graphBox1 {
+    position: relative;
+    width: 100%;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 40px;
+    min-height: 200px;
+}
+/* CHARTS */
+.graphBox2 {
+    position: relative;
+    width: 100%;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: 14fr 7fr ;
+    grid-gap: 30px;
+    min-height: 200px;
+}
+
+.graphBox1 .box {
+    position: relative;
+    background: #ffffff;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+.graphBox2 .box {
+    position: relative;
+    background: #ffffff;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+/* 
+.graphBox2 .box canvas #donutChart{
+    width: 40px;
+    height: 90px;
+} */
+
+
+
+.details {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+}
+
+.details .recentOrders {
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cardHeader h2 {
+    font-weight: 600;
+    color: #287bff;
+
+
+}
+
+
+.details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+
+}
+
+.details table thead td {
+    font-weight: 600;
+    padding: 10px;
+}
+
+.details .recentOrders table tr {
+    color: #4a3e3e;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.details .recentOrders table tr:last-child {
+    border-bottom: none;
+}
+
+.details .recentOrders table tbody tr:hover {
+    background: #3469bf;
+    color: #f5f5f5;
+}
+
+.details .recentOrders table tr td {
+    padding: 8px;
+}
+
+.details .recentOrders table tr td:last-child {
+    text-align: end;
+}
+
+.details .recentOrders table tr td:nth-child(3) {
+    text-align: start;
+}
+
+.details .recentOrders table tr td:nth-child(2) {
+    text-align: start;
+}
+
+.status.delivered {
+    padding: 2px 4px;
+    background: #d19797;
+    color: rgb(254, 254, 254);
+    border-radius: 4px;
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.status.shipped {
+    padding: 2px 4px;
+    background: #a63191;
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.status.processing {
+    padding: 2px 4px;
+    background: #469cbe;
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn {
+    background: #3469bf;
+    color: #f5f5f5;
+    padding: 6px;
+
+}
+
+
+.recentCustomers {
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    padding: 10px;
+    background: white;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+.recentCustomers thead{
+    font-weight: 600;
+    padding: 10px;
+}
+
+.recentCustomers table tr td {
+    font-weight: bold;
+    padding: 12px;
+    margin: 3px;
+}
+
+.recentCustomers table tr td h4 {
+    font-weight: 800;
+    margin: 3px;
+    line-height: 1.2em;
+}
+
+.recentCustomers table td {
+    font-weight: bold;
+}
+
+.recentCustomers table tr:hover {
+    background: #287bff;
+    color: white;
+}
+
+
+#genderChart {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Chart.js specific styling for datasets */
+.chartjs-render-monitor {
+    border-radius: 4px;
+}
+
+
+.chartLable{
+    color: #287bff;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+}
+
+/* Improving the chart's legend */
+.legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.legend li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.legend span {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+
+/* Enhance tooltip appearance */
+.tooltip {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 4px;
+    padding: 6px;
+    font-size: 12px;
+}

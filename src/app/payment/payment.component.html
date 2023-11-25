@@ -1,0 +1,159 @@
+<!-- payment.component.html -->
+<!--
+<div>
+    <h2>Payments</h2>
+    <ul>
+      <li *ngFor="let payment of payments" (click)="selectPayment(payment)">
+        {{ payment.id }} - {{ payment.amountPaid }}
+      </li>
+    </ul>
+  
+    <div *ngIf="selectedPayment">
+      <h3>Edit Payment</h3>
+      <form>
+        <label for="paymentId">PaymentID:</label>
+        <input type="text" id="paymentId" name="paymentId" [(ngModel)]="selectedPayment.id" />
+        <label for="policyId">Policy ID:</label>
+        <input type="text" id="policyId" name="policyId" [(ngModel)]="selectedPayment.policyId" />
+  
+        <label for="customerId">Customer ID:</label>
+        <input type="text" id="customerId" name="customerId" [(ngModel)]="selectedPayment.customerId" />
+  
+        <label for="paymentDate">Payment Date:</label>
+        <input type="date" id="paymentDate" name="paymentDate" [(ngModel)]="selectedPayment.paymentDate" />
+  
+        <label for="amountPaid">Amount Paid:</label>
+        <input type="number" id="amountPaid" name="amountPaid" [(ngModel)]="selectedPayment.amountPaid" />
+  
+        <label for="isLatePayment">Is Late Payment:</label>
+        <input type="checkbox" id="isLatePayment" name="isLatePayment" [(ngModel)]="selectedPayment.isLatePayment" />
+  
+        <button type="button" (click)="updatePayment()">Update</button>
+        <button type="button" (click)="deletePayment()">Delete</button>
+      </form>
+    </div>
+  
+    <div>
+      <h3>Add New Payment</h3>
+      <form>
+        <label for="paymentId">PaymentID:</label>
+        <input type="text" id="newpaymentId" name="newpaymentId" [(ngModel)]="newPayment.id" />
+  
+        <label for="newPolicyId">Policy ID:</label>
+        <input type="text" id="newPolicyId" name="newPolicyId" [(ngModel)]="newPayment.policyId" />
+  
+        <label for="newCustomerId">Customer ID:</label>
+        <input type="text" id="newCustomerId" name="newCustomerId" [(ngModel)]="newPayment.customerId" />
+  
+        <label for="newPaymentDate">Payment Date:</label>
+        <input type="date" id="newPaymentDate" name="newPaymentDate" [(ngModel)]="newPayment.paymentDate" />
+  
+        <label for="newAmountPaid">Amount Paid:</label>
+        <input type="number" id="newAmountPaid" name="newAmountPaid" [(ngModel)]="newPayment.amountPaid" />
+  
+        <label for="newIsLatePayment">Is Late Payment:</label>
+        <input type="checkbox" id="newIsLatePayment" name="newIsLatePayment" [(ngModel)]="newPayment.isLatePayment" />
+  
+        <button type="button" (click)="createPayment()">Create</button>
+      </form>
+    </div>
+  </div>
+-->
+<!-- app.component.html -->
+
+<!-- payment.component.html -->
+
+<div>
+  <div class="container">
+
+    <div class="card">
+        <div class="card-header">
+            <h2>Payment</h2>
+        </div>
+  <table class="table">
+      <thead class="thead-dark">
+          <tr>
+              <th scope="col">Payment ID</th>
+              <th scope="col">Policy ID</th>
+              <th scope="col">Customer ID</th>
+              <th scope="col">Payment Date</th>
+              <th scope="col">Amount Paid</th>
+              <th scope="col">Is Late Payment</th>
+              <th scope="col">Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let payment of payments" (click)="selectPayment(payment)">
+              <td>{{ payment.id }}</td>
+              <td>{{ payment.policyId }}</td>
+              <td>{{ payment.customerId }}</td>
+              <td>{{ payment.paymentDate }}</td>
+              <td>{{ payment.amountPaid }}</td>
+              <td>{{ payment.isLatePayment }}</td>
+              <td>
+                  <button type="button" class="btn-custom-blue" (click)="updatePayment()">Edit</button>
+                  <button type="button" class="btn-custom-blue" (click)="deletePayment()">Delete</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+
+  <div *ngIf="selectedPayment">
+      <h3>Edit Payment</h3>
+      <form>
+          <label for="paymentId">Payment ID:</label>
+          <input type="text" id="paymentId" name="paymentId" [(ngModel)]="selectedPayment.id" /><br><br>
+          <label for="policyId">Policy ID:</label>
+          <input type="text" id="policyId" name="policyId" [(ngModel)]="selectedPayment.policyId" /><br><br>
+
+          <label for="customerId">Customer ID:</label>
+          <input type="text" id="customerId" name="customerId" [(ngModel)]="selectedPayment.customerId" /><br><br>
+
+          <label for="paymentDate">Payment Date:</label>
+          <input type="text" id="paymentDate" name="paymentDate" [(ngModel)]="selectedPayment.paymentDate" /><br><br>
+
+          <label for="amountPaid">Amount Paid:</label>
+          <input type="number" id="amountPaid" name="amountPaid" [(ngModel)]="selectedPayment.amountPaid" /><br><br>
+
+          <label for="isLatePayment">Is Late Payment:</label>
+          <input type="checkbox" id="isLatePayment" name="isLatePayment" [(ngModel)]="selectedPayment.isLatePayment" /><br><br>
+
+          <button type="button" class="btn btn-custom-blue" (click)="updatePayment()">Update</button>
+          <button type="button" class="btn btn-custom-blue" (click)="deletePayment()">Delete</button>
+          <button type="button" class="btn btn-custom-blue" (click)="cancelUpdate()">Cancel</button>
+          
+      </form>
+  </div>
+
+  <div *ngIf="!selectedPayment">
+    <div class="card-header">
+   
+    <button type="button" class="btn btn-success" (click)="showCreateForm()">Create</button>
+    </div>
+      <div *ngIf="showCreate">
+      <form>
+          <label for="newPaymentId">Payment ID:</label>
+          <input type="text" id="newPaymentId" name="newPaymentId" [(ngModel)]="newPayment.id" /><br><br>
+
+          <label for="newPolicyId">Policy ID:</label>
+          <input type="text" id="newPolicyId" name="newPolicyId" [(ngModel)]="newPayment.policyId" /><br><br>
+
+          <label for="newCustomerId">Customer ID:</label>
+          <input type="text" id="newCustomerId" name="newCustomerId" [(ngModel)]="newPayment.customerId" /><br><br>
+
+          <label for="newPaymentDate">Payment Date:</label>
+          <input type="text" id="newPaymentDate" name="newPaymentDate" [(ngModel)]="newPayment.paymentDate" /><br><br>
+
+          <label for="newAmountPaid">Amount Paid:</label>
+          <input type="number" id="newAmountPaid" name="newAmountPaid" [(ngModel)]="newPayment.amountPaid" /><br><br>
+
+          <label for="newIsLatePayment">Is Late Payment:</label>
+          <input type="checkbox" id="newIsLatePayment" name="newIsLatePayment" [(ngModel)]="newPayment.isLatePayment" /><br><br>
+
+          <button type="button" class="btn btn-custom-blue" (click)="createPayment()">Create</button>
+          <button type="button" class="btn btn-custom-blue" (click)="cancelCreate()">Cancel</button>
+      </form>
+  </div>
+</div>
+</div>
+

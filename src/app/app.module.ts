@@ -1,44 +1,53 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PolicyComponent } from './policy/policy.component';
 import { CustomerComponent } from './customer/customer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import {MatIconModule} from '@angular/material/icon';
 import { CustomerService } from './customer.service';
-import { PolicyService } from './policy.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { PolicyComponent } from './policy/policy.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PaymentComponent } from './payment/payment.component';
 import { AgentComponent } from './agent/agent.component';
+import { ClaimsComponent } from './claims/claims.component';
+import { SearchComponent } from './search/search.component';
+import { DemoSearchComponent } from './demo-search/demo-search.component';
+import { TabsComponent } from './tabs/tabs.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    PolicyComponent,
     CustomerComponent,
+    PolicyComponent,
     DashboardComponent,
-    AgentComponent
+    PaymentComponent,
+    AgentComponent,
+    ClaimsComponent,
+    SearchComponent,
+    DemoSearchComponent,
+    TabsComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
     MatListModule,
     MatIconModule,
-    HttpClientModule,
+    MatSidenavModule,
     NgbModule
+
   ],
   providers: [
-    CustomerService,
-    PolicyService
+    CustomerService
   ],
   bootstrap: [AppComponent]
 })

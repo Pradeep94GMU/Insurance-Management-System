@@ -1,0 +1,63 @@
+.col-md-3{
+    font-size: 22px;
+    
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F6F6F6;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.card {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    margin: 10px;
+    text-align: center;
+}
+
+.icon img {
+    width: 40px;
+}
+
+.amount {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.change {
+    color: red;
+}
+
+.chart-container {
+    margin: 40px 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+body {
+    background-color: black;
+}
+
+h1{
+    font-size: 40px;
+    padding: 6px;
+    text-align: center;
+    font-weight: 800;
+    color: rgb(32, 67, 98);
+    text-shadow: 1px 1px 1px rgba(68, 165, 127, 0.3);
+}

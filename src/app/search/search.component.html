@@ -1,0 +1,144 @@
+<!-- search.component.html -->
+<div class="container">
+
+  <div class="card">
+      <div class="card-header">
+          <h2>Search Queries</h2>
+      </div>
+      </div><br><br>
+      
+    
+<button type="button" class="btn-custom-blue" (click)="loadTable('payments')">Query1</button>
+<button type="button" class="btn-custom-blue" (click)="loadTable('latePayments')">Query2</button>
+<button type="button" class="btn-custom-blue" (click)="loadTable('highValueClaims')">Query3</button>
+  <div *ngIf="activeTable === 'payments'">
+  <h2>Payments with Customer and Policy Details</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- Table header for the first query -->
+        <th>Customer ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Date of Birth</th>
+        <th>Phone Number</th>
+        <th>Policy ID</th>
+        <th>Policy Number</th>
+        <th>Policy Type</th>
+        <th>Policy Start Date</th>
+        <th>Policy End Date</th>
+        <th>Policy Active</th>
+        <th>Payment ID</th>
+        <th>Payment Date</th>
+        <th>Amount Paid</th>
+        <th>Late Payment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of searchResults">
+        <!-- Table rows for the first query -->
+        <td>{{ result.customerId }}</td>
+        <td>{{ result.customerFirstName }}</td>
+        <td>{{ result.customerLastName }}</td>
+        <td>{{ result.customerEmail }}</td>
+        <td>{{ result.customerDateOfBirth | date }}</td>
+        <td>{{ result.customerPhoneNumber }}</td>
+        <td>{{ result.policyId }}</td>
+        <td>{{ result.policyNumber }}</td>
+        <td>{{ result.policyType }}</td>
+        <td>{{ result.policyStartDate | date }}</td>
+        <td>{{ result.policyEndDate | date }}</td>
+        <td>{{ result.policyActive ? 'Yes' : 'No' }}</td>
+        <td>{{ result.paymentId }}</td>
+        <td>{{ result.paymentDate | date }}</td>
+        <td>{{ result.amountPaid }}</td>
+        <td>{{ result.latePayment ? 'Yes' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div *ngIf="activeTable === 'latePayments'">
+  <h2>Late Payments with Details</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <!-- Table header for the second query -->
+        <th>Customer ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Date of Birth</th>
+        <th>Phone Number</th>
+        <th>Policy ID</th>
+        <th>Policy Number</th>
+        <th>Policy Type</th>
+        <th>Policy Start Date</th>
+        <th>Policy End Date</th>
+        <th>Policy Active</th>
+        <th>Payment ID</th>
+        <th>Payment Date</th>
+        <th>Amount Paid</th>
+        <th>Late Payment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of searchResults">
+        <!-- Table rows for the second query -->
+        <td>{{ result.customerId }}</td>
+        <td>{{ result.customerFirstName }}</td>
+        <td>{{ result.customerLastName }}</td>
+        <td>{{ result.customerEmail }}</td>
+        <td>{{ result.customerDateOfBirth | date }}</td>
+        <td>{{ result.customerPhoneNumber }}</td>
+        <td>{{ result.policyId }}</td>
+        <td>{{ result.policyNumber }}</td>
+        <td>{{ result.policyType }}</td>
+        <td>{{ result.policyStartDate | date }}</td>
+        <td>{{ result.policyEndDate | date }}</td>
+        <td>{{ result.policyActive ? 'Yes' : 'No' }}</td>
+        <td>{{ result.paymentId }}</td>
+        <td>{{ result.paymentDate | date }}</td>
+        <td>{{ result.amountPaid }}</td>
+        <td>{{ result.latePayment ? 'Yes' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+ 
+
+
+  <div *ngIf="activeTable === 'highValueClaims'">
+  <h2>High-Value Claims</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Claim ID</th>
+        <th>Claim Amount</th>
+        <th>Customer ID</th>
+        <th>Customer Firstname</th>
+        <th>Customer Lastname</th>
+        <th>Customer Age</th>
+        <th>Policy Id</th>
+        <th>Policy Number</th>
+        <th>Policy type</th>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of searchResults">
+        <td>{{ result.claimId }}</td>
+        <td>{{ result.claimAmount }}</td>
+        <td>{{ result.customerId }}</td>
+        <td>{{ result.customerFirstName }}</td>
+        <td>{{ result.customerLastName }}</td>
+        <td>{{ result.customerAge }}</td>
+        <td>{{ result.policyId }}</td>
+        <td>{{ result.policyNumber }}</td>
+        <td>{{ result.policyType }}</td>
+        <!-- Add any additional fields as needed -->
+      </tr>
+    </tbody>
+  </table>
+  </div>

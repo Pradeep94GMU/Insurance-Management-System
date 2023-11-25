@@ -1,181 +1,123 @@
+
+
+<!-- customer.component.html -->
+
 <div class="container">
 
-    <div class="card">
-        <div class="card-header">
-            <h2>Customers</h2>
-        </div>
+  <div class="card">
+      <div class="card-header">
+          <h2>Customers</h2>
+      </div>
 
-        <div class="card-body">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Date of Birth</th>
-                        <th>Phone</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let customer of customers" (click)="selectCustomer(customer)">
-                        <td>{{customer.id}}</td>
-                        <td>{{customer.firstName}}</td>
-                        <td>{{customer.lastName}}</td>
-                        <td>{{customer.email}}</td>
-                        <td>{{customer.dateOfBirth | date:'shortDate'}}</td>
-                        <td>{{customer.phoneNumber}}</td>
-                        <td>
-                            <button class="btn btn-primary">Edit</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Customer ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr *ngFor="let customer of customers" (click)="selectCustomer(customer)">
+        <th >{{ customer.id }}</th>
+        <td>{{ customer.firstName }}</td>
+        <td>{{ customer.lastName }}</td>
+        <td>{{ customer.age}}</td>
+        <td>{{ customer.gender}}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.dateOfBirth }}</td>
+        <td>{{ customer.phoneNumber }}</td>
+        
+        <td>
+          <button type="button" class="btn-custom-blue" (click)="selectCustomer(customer)">Edit</button>
+          <button type="button" class="btn-custom-blue" (click)="deleteCustomer()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div *ngIf="selectedCustomer">
+    <h3>Edit Customer</h3>
+    <form>
+      <label>Customer ID:</label>
+      <input [(ngModel)]="selectedCustomer.id" name="id" /><br><br>
+
+      <label>First Name:</label>
+      <input [(ngModel)]="selectedCustomer.firstName" name="firstName" /><br><br>
+
+      <label>Last Name:</label>
+      <input [(ngModel)]="selectedCustomer.lastName" name="lastName" /><br><br>
+
+      <label>Age:</label>
+      <input [(ngModel)]="selectedCustomer.age" name="age" /><br><br>
+
+      <label>Gender:</label>
+      <input [(ngModel)]="selectedCustomer.gender" name="gender" /><br><br>
+
+      <label>Email:</label>
+      <input [(ngModel)]="selectedCustomer.email" name="email" /><br><br>
+
+      <label>Date of Birth:</label>
+      <input [(ngModel)]="selectedCustomer.dateOfBirth" type="date" name="dateOfBirth" /><br><br>
+
+      <label>Phone Number:</label>
+      <input [(ngModel)]="selectedCustomer.phoneNumber" name="phoneNumber" /><br><br>
+
+      <label>Creation Date:</label>
+      <input [(ngModel)]="selectedCustomer.createDate" name="createDate" /><br><br>
+
+      <button type="button" class="btn btn-custom-blue" (click)="updateCustomer()">Update</button>
+      <button type="button" class="btn btn-custom-blue" (click)="deleteCustomer()">Delete</button>
+      <button type="button" class="btn btn-custom-blue" (click)="cancelUpdate()">Cancel</button>
+      
+      
+    </form>
+  </div>
+
+  <div *ngIf="!selectedCustomer">
+    <div class="card-header">
+   
+    <button type="button" class="btn btn-success" (click)="showCreateForm()">Create</button>
     </div>
+    <div *ngIf="showCreate" >
+      <form>
 
-    <div class="card" *ngIf="selectedCustomer">
-        <div class="card-header">
-            <h3>Edit Customer</h3>
-        </div>
+        <label>Customer ID:</label>
+        <input [(ngModel)]="newCustomer.id" name="id" /><br><br>
 
-        <div class="card-body">
-            <form>
-                <div class="form-group">
-                    <label>First Name</label>
-                    <input class="form-control" [(ngModel)]="selectedCustomer.firstName" name="firstName">
-                </div>
+        <label>First Name:</label>
+        <input [(ngModel)]="newCustomer.firstName" name="firstName" /><br><br>
 
-                <div class="form-group">
-                    <label>Last Name</label>
-                    <input class="form-control" [(ngModel)]="selectedCustomer.lastName" name="lastName">
-                </div>
+        <label>Last Name:</label>
+        <input [(ngModel)]="newCustomer.lastName" name="lastName" /><br><br>
+        <label>Age:</label>
+        <input [(ngModel)]="newCustomer.age" name="age" /><br><br>
+        <label>Gender:</label>
+        <input [(ngModel)]="newCustomer.gender" name="gender" /><br><br>
 
-                <div class="form-group">
-                    <label>Email</label>
-                    <input class="form-control" [(ngModel)]="selectedCustomer.email" name="email">
-                </div>
+        <label>Email:</label>
+        <input [(ngModel)]="newCustomer.email" name="email" /><br><br>
 
-                <div class="form-group">
-                    <label>DOB</label>
-                    <input class="form-control" [(ngModel)]="selectedCustomer.dateOfBirth" name="dateOfBirth" />
-                </div>
+        <label>Date of Birth:</label>
+        <input [(ngModel)]="newCustomer.dateOfBirth" type="date" name="dateOfBirth" /><br><br>
 
-                <div class="form-group">
-                    <label>Phone</label>
-                    <input class="form-control" [(ngModel)]="selectedCustomer.phoneNumber" name="phoneNumber" />
-                </div>
+        <label>Phone Number:</label>
+        <input [(ngModel)]="newCustomer.phoneNumber" name="phoneNumber" /><br><br>
 
-               
+        <label>Creation Date:</label>
+        <input [(ngModel)]="newCustomer.createDate" name="createDate" placeholder="2023-11-23T16:15:00"/><br><br>
 
-                <!-- other fields -->
-
-                 <button type="button" (click)="updateCustomer()">Update</button>
-                 <button type="button" (click)="deleteCustomer()">Delete</button>
-            </form>
-        </div>
+        <button type="button" class="btn btn-custom-blue" (click)="createCustomer()">Create</button>
+        <button type="button" class="btn btn-custom-blue" (click)="cancelCreate()">Cancel</button>
+      </form>
     </div>
-
-    <button class="btn btn-success" (click)="toggleForm()" >Add New Customer</button>
-    <div *ngIf="showForm" class="card mt-4">
-        <div class="card-header">
-          <h5 class="card-title">Customer Form</h5>
-        </div>
-
-        <div class="card-body" >
-            <form  >
-                <div class="form-group">
-                    <label >Id</label>
-                    <input  class="form-control" [(ngModel)]="newCustomer.id" name="id">
-                </div>
-
-                <div class="form-group">
-                    <label >First Name</label>
-                    <input  class="form-control" [(ngModel)]="newCustomer.firstName" name="firstName">
-                </div>
-
-                <div class="form-group">
-                    <label>Last Name</label>
-                    <input class="form-control" [(ngModel)]="newCustomer.lastName" name="lastName">
-                </div>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input class="form-control" [(ngModel)]="newCustomer.email" name="email">
-                </div>
-
-                <div class="form-group">
-                    <label>DOB</label>
-                    <input class="form-control" [(ngModel)]="newCustomer.dateOfBirth" name="dateOfBirth" />
-                </div>
-
-                <div class="form-group">
-                    <label>Phone</label>
-                    <input class="form-control" [(ngModel)]="newCustomer.phoneNumber" name="phoneNumber" />
-                </div>
-                <!-- other fields -->
-
-                <button type="submit" class="btn btn-primary"(click)="createCustomer()"  (click)="toggleForm()" >Save</button>
-            </form>
-        </div>
-    </div>
-
+  </div> 
 </div>
-
-
-
-
-<!-- 
- <div>
-    <h2>Customers</h2>
-    <ul>
-      <li *ngFor="let customer of customers" (click)="selectCustomer(customer)">
-        {{ customer.firstName }} {{ customer.lastName }}
-      </li>
-    </ul>
-  
-    <div *ngIf="selectedCustomer">
-      <h3>Edit Customer</h3>
-      <form>
-        <label>First Name:</label>
-        <input [(ngModel)]="selectedCustomer.firstName" name="firstName" />
-  
-        <label>Last Name:</label>
-        <input [(ngModel)]="selectedCustomer.lastName" name="lastName" />
-  
-        <label>Email:</label>
-        <input [(ngModel)]="selectedCustomer.email" name="email" />
-  
-        <label>Date of Birth:</label>
-        <input [(ngModel)]="selectedCustomer.dateOfBirth" type ="data" name="dateOfBirth" />
-  
-        <label>Phone Number:</label>
-        <input [(ngModel)]="selectedCustomer.phoneNumber" name="phoneNumber" />
-  
-        <button type="button" (click)="updateCustomer()">Update</button>
-        <button type="button" (click)="deleteCustomer()">Delete</button>
-      </form>
-    </div>
-  
-    <div>
-      <h3>Add New Customer</h3>
-      <form>
-        <label>First Name:</label>
-        <input [(ngModel)]="newCustomer.firstName" name="firstName" />
-  
-        <label>Last Name:</label>
-        <input [(ngModel)]="newCustomer.lastName" name="lastName" />
-  
-        <label>Email:</label>
-        <input [(ngModel)]="newCustomer.email" name="email" />
-  
-        <label>Date of Birth:</label>
-        <input [(ngModel)]="newCustomer.dateOfBirth" name="dateOfBirth" />
-  
-        <label>Phone Number:</label>
-        <input [(ngModel)]="newCustomer.phoneNumber" name="phoneNumber" />
-  
-        <button type="button" (click)="createCustomer()">Create</button>
-      </form>
-    </div>
-  </div> -->
